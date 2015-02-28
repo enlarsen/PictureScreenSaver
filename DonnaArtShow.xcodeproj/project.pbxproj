@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30DD7AF1AA0EE6800BC909D /* ConfigurationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */; };
 		B35628B31A9EB74C006C1816 /* DonnaArtShowView.h in Headers */ = {isa = PBXBuildFile; fileRef = B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */; };
 		B35628B51A9EB74C006C1816 /* DonnaArtShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B35628B41A9EB74C006C1816 /* DonnaArtShowView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationSheet.xib; sourceTree = "<group>"; };
 		B35628AD1A9EB74C006C1816 /* DonnaArtShow.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonnaArtShow.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35628B11A9EB74C006C1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DonnaArtShowView.h; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */,
 				B35628B41A9EB74C006C1816 /* DonnaArtShowView.m */,
+				B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */,
 				B35628B01A9EB74C006C1816 /* Supporting Files */,
 			);
 			path = DonnaArtShow;
@@ -131,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30DD7AF1AA0EE6800BC909D /* ConfigurationSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +267,7 @@
 				B35628BA1A9EB74C006C1816 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

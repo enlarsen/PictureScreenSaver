@@ -10,4 +10,8 @@
 
 @interface DonnaArtShowView : ScreenSaverView
 
+@property (strong, nonatomic) IBOutlet NSWindow *configureWindow;
+@property (strong, nonatomic) IBOutlet NSTextField *picturesFolderTextField;
+@property (weak) IBOutlet NSComboBox *pictureChangeIntervalComboBox;
+
 @end

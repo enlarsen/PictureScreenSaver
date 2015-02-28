@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DonnaArtShowView">
+            <connections>
+                <outlet property="configureWindow" destination="yd2-Hg-fno" id="gaf-FZ-D5w"/>
+                <outlet property="pictureChangeIntervalComboBox" destination="h1h-Xj-n6w" id="Ugg-4S-27y"/>
+                <outlet property="picturesFolderTextField" destination="vEO-oB-xsu" id="lAf-4w-CAG"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="yd2-Hg-fno" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="272" y="172" width="505" height="124"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="xM9-yJ-vGc">
+                <rect key="frame" x="0.0" y="0.0" width="505" height="124"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <comboBox focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h1h-Xj-n6w">
+                        <rect key="frame" x="165" y="50" width="323" height="26"/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tx0-76-psa">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </comboBoxCell>
+                    </comboBox>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-oB-xsu">
+                        <rect key="frame" x="18" y="87" width="327" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Pictures folder" id="XEe-07-4Lj">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9HG-0f-DQm">
+                        <rect key="frame" x="351" y="80" width="134" height="25"/>
+                        <buttonCell key="cell" type="roundTextured" title="Choose folder..." bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xfs-Rn-Aer">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="configureChooseFolder:" target="-2" id="BpD-D4-rck"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rNO-tf-T4a">
+                        <rect key="frame" x="18" y="57" width="141" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pictures change every" id="xoT-nU-bfE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbg-i2-SVO">
+                        <rect key="frame" x="84" y="1" width="333" height="62"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-HA-IHu">
+                                <rect key="frame" x="20" y="18" width="122" height="25"/>
+                                <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72e-Kh-BHX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="configureCancel:" target="-2" id="udB-Tn-d1D"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-3w-MqK">
+                                <rect key="frame" x="191" y="18" width="122" height="25"/>
+                                <buttonCell key="cell" type="roundTextured" title="OK" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DzU-5g-V2t">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="configureOK:" target="-2" id="G6Z-BQ-eLq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="KhF-3w-MqK" firstAttribute="leading" secondItem="qkC-HA-IHu" secondAttribute="trailing" constant="49" id="Dda-Ze-z4X"/>
+                            <constraint firstItem="qkC-HA-IHu" firstAttribute="top" secondItem="bbg-i2-SVO" secondAttribute="top" constant="20" id="MgO-Pf-cyT"/>
+                            <constraint firstAttribute="bottom" secondItem="KhF-3w-MqK" secondAttribute="bottom" constant="20" id="R6A-eA-4Jx"/>
+                            <constraint firstAttribute="trailing" secondItem="KhF-3w-MqK" secondAttribute="trailing" constant="20" id="VtY-KQ-uwB"/>
+                            <constraint firstAttribute="bottom" secondItem="qkC-HA-IHu" secondAttribute="bottom" constant="20" id="jKt-RB-BbB"/>
+                            <constraint firstItem="KhF-3w-MqK" firstAttribute="top" secondItem="bbg-i2-SVO" secondAttribute="top" constant="20" id="mwh-A1-bsa"/>
+                            <constraint firstItem="qkC-HA-IHu" firstAttribute="leading" secondItem="bbg-i2-SVO" secondAttribute="leading" constant="20" id="oMS-2V-olY"/>
+                        </constraints>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="h1h-Xj-n6w" firstAttribute="leading" secondItem="rNO-tf-T4a" secondAttribute="trailing" constant="8" id="0jG-jK-l23"/>
+                    <constraint firstAttribute="trailing" secondItem="h1h-Xj-n6w" secondAttribute="trailing" constant="20" id="2Rl-ft-pEg"/>
+                    <constraint firstAttribute="centerX" secondItem="bbg-i2-SVO" secondAttribute="centerX" id="42h-qB-HIx"/>
+                    <constraint firstAttribute="trailing" secondItem="9HG-0f-DQm" secondAttribute="trailing" constant="20" id="7PI-Sc-i8a"/>
+                    <constraint firstItem="rNO-tf-T4a" firstAttribute="top" secondItem="vEO-oB-xsu" secondAttribute="bottom" constant="13" id="Ex8-oe-cMN"/>
+                    <constraint firstItem="h1h-Xj-n6w" firstAttribute="top" secondItem="9HG-0f-DQm" secondAttribute="bottom" constant="8" id="Oqe-rU-2PK"/>
+                    <constraint firstItem="9HG-0f-DQm" firstAttribute="leading" secondItem="vEO-oB-xsu" secondAttribute="trailing" constant="8" id="eKW-aR-bwM"/>
+                    <constraint firstItem="vEO-oB-xsu" firstAttribute="leading" secondItem="xM9-yJ-vGc" secondAttribute="leading" constant="20" id="f6S-eV-hpx"/>
+                    <constraint firstItem="rNO-tf-T4a" firstAttribute="leading" secondItem="xM9-yJ-vGc" secondAttribute="leading" constant="20" id="jmv-R6-Y2K"/>
+                    <constraint firstAttribute="bottom" secondItem="bbg-i2-SVO" secondAttribute="bottom" constant="1" id="neU-rZ-mgI"/>
+                    <constraint firstItem="vEO-oB-xsu" firstAttribute="top" secondItem="xM9-yJ-vGc" secondAttribute="top" constant="20" id="qGH-Zm-rFa"/>
+                    <constraint firstItem="9HG-0f-DQm" firstAttribute="top" secondItem="xM9-yJ-vGc" secondAttribute="top" constant="20" id="vbD-lH-6N2"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="515.5" y="406"/>
+        </window>
+    </objects>
+</document>

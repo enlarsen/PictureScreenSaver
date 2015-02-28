@@ -52,7 +52,9 @@
 
     [super startAnimation];
 
-    self.files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"description" ascending:YES];
+
+    self.files = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error] sortedArrayUsingDescriptors:@[sort]];
 }
 
 - (void)stopAnimation
@@ -67,16 +69,58 @@
     [super drawRect:rect];
     if(self.currentImage)
     {
-        if(self.currentImage.size.height > rect.size.height ||
-           self.currentImage.size.width > rect.size.width)
+        NSInteger repWidth = 0;
+        NSInteger repHeight = 0;
+        CGFloat height, width;
+        for(NSImageRep *rep in self.currentImage.representations)
         {
-            // TODO: handle case where picture is too big for the screen
+            NSLog(@"Image rep width: %ld height: %ld", (long)rep.pixelsWide, (long)rep.pixelsHigh);
+            if([rep pixelsWide] > repWidth)
+            {
+                repWidth = [rep pixelsWide];
+                repHeight = [rep pixelsHigh];
+            }
         }
-        CGFloat centerX = (rect.size.width / 2.0) - (self.currentImage.size.width / 2.0);
-        CGFloat centerY = (rect.size.height / 2.0) - (self.currentImage.size.height / 2.0);
+        NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(repWidth, repHeight)];
+        [image addRepresentations:self.currentImage.representations];
 
-        [self.currentImage drawInRect:CGRectMake(centerX, centerY, self.currentImage.size.width,
-                                                 self.currentImage.size.height)];
+        CGFloat centerX, centerY;
+
+//        if(image.size.height > rect.size.height ||
+//           image.size.width > rect.size.width)
+//        {
+            CGFloat horizontalScaleFactor = rect.size.width / image.size.width;
+            CGFloat verticalScaleFactor = rect.size.height / image.size.height;
+            CGFloat scaleFactor;
+
+            if(verticalScaleFactor < horizontalScaleFactor)
+            {
+                scaleFactor = verticalScaleFactor;
+            }
+            else
+            {
+                scaleFactor = horizontalScaleFactor;
+            }
+
+            width = image.size.width * scaleFactor;
+            height = image.size.height * scaleFactor;
+//        }
+//        else
+//        {
+//            width = image.size.width;
+//            height = image.size.height;
+//        }
+
+        centerX = (rect.size.width / 2.0) - (width / 2.0);
+        centerY = (rect.size.height / 2.0) - (height / 2.0);
+
+
+        NSRect newRect = CGRectMake(centerX, centerY, width,
+                                 height);
+        [image drawInRect:newRect];
+        NSLog(@"Drawing %@ (%@) in rect: %@", self.files[self.currentIndex],
+              NSStringFromSize(self.currentImage.size), NSStringFromRect(newRect));
+
     }
 }
 
@@ -113,7 +157,39 @@
 
 - (NSWindow*)configureSheet
 {
-    return nil;
+    if(!self.configureWindow)
+    {
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        BOOL result = [bundle loadNibNamed:@"ConfigurationSheet" owner:self topLevelObjects:nil];
+        [self.pictureChangeIntervalComboBox addItemsWithObjectValues:[DonnaArtShowView comboBoxToInterval].allKeys];
+    }
+    return self.configureWindow;
+
+}
+- (IBAction)configureOK:(NSButton *)sender
+{
+    
+}
+
+- (IBAction)configureCancel:(NSButton *)sender
+{
+
+}
+- (IBAction)configureChooseFolder:(NSButton *)sender
+{
+
+}
+
++ (NSDictionary *)comboBoxToInterval
+{
+    return @{@"5 seconds": @5.0,
+             @"Minute": @60,
+             @"15 minutes": @(60 * 15),
+             @"20 minutes": @(60 * 20),
+             @"Hour": @(60 * 60),
+             @"4 hours": @(60 * 60 * 4),
+             @"8 hours": @(60 * 60 * 8),
+             @"Day": @(60 *60 * 24)};
 }
 
 @end

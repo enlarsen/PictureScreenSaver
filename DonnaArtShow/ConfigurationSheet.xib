@@ -30,16 +30,16 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
                     </comboBox>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-oB-xsu">
-                        <rect key="frame" x="18" y="87" width="327" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Pictures folder" id="XEe-07-4Lj">
+                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-oB-xsu">
+                        <rect key="frame" x="20" y="82" width="345" height="22"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Pictures folder" usesSingleLineMode="YES" id="XEe-07-4Lj">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9HG-0f-DQm">
-                        <rect key="frame" x="351" y="80" width="134" height="25"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9HG-0f-DQm">
+                        <rect key="frame" x="373" y="80" width="112" height="25"/>
                         <buttonCell key="cell" type="roundTextured" title="Choose folder..." bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xfs-Rn-Aer">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -49,18 +49,21 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rNO-tf-T4a">
-                        <rect key="frame" x="18" y="57" width="141" height="17"/>
+                        <rect key="frame" x="18" y="56" width="141" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pictures change every" id="xoT-nU-bfE">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbg-i2-SVO">
-                        <rect key="frame" x="84" y="1" width="333" height="62"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="bbg-i2-SVO">
+                        <rect key="frame" x="86" y="1" width="333" height="62"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-HA-IHu">
+                            <button horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-HA-IHu">
                                 <rect key="frame" x="20" y="18" width="122" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="122" id="4yu-g3-dhm"/>
+                                </constraints>
                                 <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="72e-Kh-BHX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -69,7 +72,7 @@
                                     <action selector="configureCancel:" target="-2" id="udB-Tn-d1D"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-3w-MqK">
+                            <button horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-3w-MqK">
                                 <rect key="frame" x="191" y="18" width="122" height="25"/>
                                 <buttonCell key="cell" type="roundTextured" title="OK" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DzU-5g-V2t">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -88,6 +91,7 @@
                             <constraint firstAttribute="bottom" secondItem="qkC-HA-IHu" secondAttribute="bottom" constant="20" id="jKt-RB-BbB"/>
                             <constraint firstItem="KhF-3w-MqK" firstAttribute="top" secondItem="bbg-i2-SVO" secondAttribute="top" constant="20" id="mwh-A1-bsa"/>
                             <constraint firstItem="qkC-HA-IHu" firstAttribute="leading" secondItem="bbg-i2-SVO" secondAttribute="leading" constant="20" id="oMS-2V-olY"/>
+                            <constraint firstItem="qkC-HA-IHu" firstAttribute="width" secondItem="KhF-3w-MqK" secondAttribute="width" id="uEe-fg-pbo"/>
                         </constraints>
                     </customView>
                 </subviews>
@@ -96,7 +100,7 @@
                     <constraint firstAttribute="trailing" secondItem="h1h-Xj-n6w" secondAttribute="trailing" constant="20" id="2Rl-ft-pEg"/>
                     <constraint firstAttribute="centerX" secondItem="bbg-i2-SVO" secondAttribute="centerX" id="42h-qB-HIx"/>
                     <constraint firstAttribute="trailing" secondItem="9HG-0f-DQm" secondAttribute="trailing" constant="20" id="7PI-Sc-i8a"/>
-                    <constraint firstItem="rNO-tf-T4a" firstAttribute="top" secondItem="vEO-oB-xsu" secondAttribute="bottom" constant="13" id="Ex8-oe-cMN"/>
+                    <constraint firstItem="rNO-tf-T4a" firstAttribute="top" secondItem="vEO-oB-xsu" secondAttribute="bottom" constant="9" id="Ex8-oe-cMN"/>
                     <constraint firstItem="h1h-Xj-n6w" firstAttribute="top" secondItem="9HG-0f-DQm" secondAttribute="bottom" constant="8" id="Oqe-rU-2PK"/>
                     <constraint firstItem="9HG-0f-DQm" firstAttribute="leading" secondItem="vEO-oB-xsu" secondAttribute="trailing" constant="8" id="eKW-aR-bwM"/>
                     <constraint firstItem="vEO-oB-xsu" firstAttribute="leading" secondItem="xM9-yJ-vGc" secondAttribute="leading" constant="20" id="f6S-eV-hpx"/>

@@ -19,6 +19,7 @@
 		B35628B11A9EB74C006C1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = PictureScreenSaver/Info.plist; sourceTree = "<group>"; };
 		B35628B21A9EB74C006C1816 /* PictureScreenSaver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PictureScreenSaver.h; path = PictureScreenSaver/PictureScreenSaver.h; sourceTree = "<group>"; };
 		B35628B41A9EB74C006C1816 /* PictureScreenSaver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PictureScreenSaver.m; path = PictureScreenSaver/PictureScreenSaver.m; sourceTree = "<group>"; };
+		B37DAD871AA64A7B004261CB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 				B35628B41A9EB74C006C1816 /* PictureScreenSaver.m */,
 				B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */,
 				B35628B01A9EB74C006C1816 /* Supporting Files */,
+				B37DAD871AA64A7B004261CB /* README.md */,
 			);
 			name = PictureScreenSaver;
 			sourceTree = "<group>";

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="DonnaArtShowView">
+        <customObject id="-2" userLabel="File's Owner" customClass="PictureScreenSaver">
             <connections>
                 <outlet property="configureWindow" destination="yd2-Hg-fno" id="gaf-FZ-D5w"/>
                 <outlet property="pictureChangeIntervalComboBox" destination="h1h-Xj-n6w" id="Ugg-4S-27y"/>

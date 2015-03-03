@@ -23,6 +23,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2015 Erik Larsen. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
-	<string>DonnaArtShowView</string>
+	<string>PictureScreenSaver</string>
 </dict>
 </plist>

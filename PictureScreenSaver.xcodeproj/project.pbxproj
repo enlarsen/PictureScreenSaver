@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		B30DD7AF1AA0EE6800BC909D /* ConfigurationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */; };
-		B35628B31A9EB74C006C1816 /* DonnaArtShowView.h in Headers */ = {isa = PBXBuildFile; fileRef = B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */; };
-		B35628B51A9EB74C006C1816 /* DonnaArtShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B35628B41A9EB74C006C1816 /* DonnaArtShowView.m */; };
+		B35628B31A9EB74C006C1816 /* PictureScreenSaver.h in Headers */ = {isa = PBXBuildFile; fileRef = B35628B21A9EB74C006C1816 /* PictureScreenSaver.h */; };
+		B37DAD861AA53721004261CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B35628B11A9EB74C006C1816 /* Info.plist */; };
+		B3BD57B51AA5366D00F399A3 /* PictureScreenSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = B35628B41A9EB74C006C1816 /* PictureScreenSaver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationSheet.xib; sourceTree = "<group>"; };
-		B35628AD1A9EB74C006C1816 /* DonnaArtShow.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonnaArtShow.saver; sourceTree = BUILT_PRODUCTS_DIR; };
-		B35628B11A9EB74C006C1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DonnaArtShowView.h; sourceTree = "<group>"; };
-		B35628B41A9EB74C006C1816 /* DonnaArtShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DonnaArtShowView.m; sourceTree = "<group>"; };
+		B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfigurationSheet.xib; path = PictureScreenSaver/ConfigurationSheet.xib; sourceTree = "<group>"; };
+		B35628AD1A9EB74C006C1816 /* PictureScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictureScreenSaver.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		B35628B11A9EB74C006C1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = PictureScreenSaver/Info.plist; sourceTree = "<group>"; };
+		B35628B21A9EB74C006C1816 /* PictureScreenSaver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PictureScreenSaver.h; path = PictureScreenSaver/PictureScreenSaver.h; sourceTree = "<group>"; };
+		B35628B41A9EB74C006C1816 /* PictureScreenSaver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PictureScreenSaver.m; path = PictureScreenSaver/PictureScreenSaver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +35,7 @@
 		B35628A31A9EB74C006C1816 = {
 			isa = PBXGroup;
 			children = (
-				B35628AF1A9EB74C006C1816 /* DonnaArtShow */,
+				B35628AF1A9EB74C006C1816 /* PictureScreenSaver */,
 				B35628AE1A9EB74C006C1816 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -42,20 +43,20 @@
 		B35628AE1A9EB74C006C1816 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B35628AD1A9EB74C006C1816 /* DonnaArtShow.saver */,
+				B35628AD1A9EB74C006C1816 /* PictureScreenSaver.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B35628AF1A9EB74C006C1816 /* DonnaArtShow */ = {
+		B35628AF1A9EB74C006C1816 /* PictureScreenSaver */ = {
 			isa = PBXGroup;
 			children = (
-				B35628B21A9EB74C006C1816 /* DonnaArtShowView.h */,
-				B35628B41A9EB74C006C1816 /* DonnaArtShowView.m */,
+				B35628B21A9EB74C006C1816 /* PictureScreenSaver.h */,
+				B35628B41A9EB74C006C1816 /* PictureScreenSaver.m */,
 				B30DD7AE1AA0EE6800BC909D /* ConfigurationSheet.xib */,
 				B35628B01A9EB74C006C1816 /* Supporting Files */,
 			);
-			path = DonnaArtShow;
+			name = PictureScreenSaver;
 			sourceTree = "<group>";
 		};
 		B35628B01A9EB74C006C1816 /* Supporting Files */ = {
@@ -73,16 +74,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B35628B31A9EB74C006C1816 /* DonnaArtShowView.h in Headers */,
+				B35628B31A9EB74C006C1816 /* PictureScreenSaver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B35628AC1A9EB74C006C1816 /* DonnaArtShow */ = {
+		B35628AC1A9EB74C006C1816 /* PictureScreenSaver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B35628B81A9EB74C006C1816 /* Build configuration list for PBXNativeTarget "DonnaArtShow" */;
+			buildConfigurationList = B35628B81A9EB74C006C1816 /* Build configuration list for PBXNativeTarget "PictureScreenSaver" */;
 			buildPhases = (
 				B35628A81A9EB74C006C1816 /* Sources */,
 				B35628A91A9EB74C006C1816 /* Frameworks */,
@@ -93,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = DonnaArtShow;
+			name = PictureScreenSaver;
 			productName = DonnaArtShow;
-			productReference = B35628AD1A9EB74C006C1816 /* DonnaArtShow.saver */;
+			productReference = B35628AD1A9EB74C006C1816 /* PictureScreenSaver.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B35628A71A9EB74C006C1816 /* Build configuration list for PBXProject "DonnaArtShow" */;
+			buildConfigurationList = B35628A71A9EB74C006C1816 /* Build configuration list for PBXProject "PictureScreenSaver" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -124,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B35628AC1A9EB74C006C1816 /* DonnaArtShow */,
+				B35628AC1A9EB74C006C1816 /* PictureScreenSaver */,
 			);
 		};
 /* End PBXProject section */
@@ -134,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B37DAD861AA53721004261CB /* Info.plist in Resources */,
 				B30DD7AF1AA0EE6800BC909D /* ConfigurationSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B35628B51A9EB74C006C1816 /* DonnaArtShowView.m in Sources */,
+				B3BD57B51AA5366D00F399A3 /* PictureScreenSaver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,9 +232,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DonnaArtShow/Info.plist;
+				INFOPLIST_FILE = PictureScreenSaver/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PictureScreenSaver;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -241,9 +243,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DonnaArtShow/Info.plist;
+				INFOPLIST_FILE = PictureScreenSaver/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PictureScreenSaver;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -251,7 +253,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B35628A71A9EB74C006C1816 /* Build configuration list for PBXProject "DonnaArtShow" */ = {
+		B35628A71A9EB74C006C1816 /* Build configuration list for PBXProject "PictureScreenSaver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B35628B61A9EB74C006C1816 /* Debug */,
@@ -260,7 +262,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B35628B81A9EB74C006C1816 /* Build configuration list for PBXNativeTarget "DonnaArtShow" */ = {
+		B35628B81A9EB74C006C1816 /* Build configuration list for PBXNativeTarget "PictureScreenSaver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B35628B91A9EB74C006C1816 /* Debug */,

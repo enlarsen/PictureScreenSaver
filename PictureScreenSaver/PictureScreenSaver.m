@@ -1,33 +1,43 @@
 //
-//  DonnaArtShowView.m
-//  DonnaArtShow
+//  PictureScreenSaverView.m
+//  PictureScreenSaver
 //
 //  Created by Erik Larsen on 2/25/15.
 //  Copyright (c) 2015 Erik Larsen. All rights reserved.
 //
 
 
-#import "DonnaArtShowView.h"
+#import "PictureScreenSaver.h"
 
 static NSString * const pictureDirectoryKey = @"pictureDirectory";
 static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
+static double const shuffleTimeInterval = 60.0 * 60.0 * 24.0; // shuffle the photos every 24 hours
 
-@interface DonnaArtShowView()
+@interface PictureScreenSaver()
 
 @property (nonatomic) NSTimeInterval changeTimeInterval;
 @property (nonatomic) NSTimeInterval currentTimeInterval;
+@property (nonatomic) NSTimeInterval currentShuffleTimeInterval;
 @property (strong, nonatomic) NSString *path;
-@property (strong, nonatomic) NSArray *files;
+@property (strong, nonatomic) NSMutableArray *files;
 @property (nonatomic) int currentIndex;
 @property (strong, nonatomic) NSImage *currentImage;
 @property (strong, nonatomic) NSString *bundleIdentifier;
 @property (strong, nonatomic) ScreenSaverDefaults *defaults;
 @end
 
-@implementation DonnaArtShowView
+@implementation PictureScreenSaver
 
 #pragma mark - Properties
 
+- (NSMutableArray *)files
+{
+    if(!_files)
+    {
+        _files = [[NSMutableArray alloc] init];
+    }
+    return _files;
+}
 - (NSString *)bundleIdentifier
 {
     if(!_bundleIdentifier)
@@ -53,7 +63,7 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
     if (self)
     {
 
-        [self.defaults registerDefaults:[DonnaArtShowView defaultsDictionary]];
+        [self.defaults registerDefaults:[PictureScreenSaver defaultsDictionary]];
         self.animationTimeInterval = 5.0;
 
         self.changeTimeInterval = [self.defaults doubleForKey:pictureChangeIntervalKey];
@@ -74,64 +84,42 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
 
     [super startAnimation];
 
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"description" ascending:YES];
+    self.files = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error]  mutableCopy];
 
-    self.files = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error] sortedArrayUsingDescriptors:@[sort]];
+    [self shuffleFiles];
+    NSLog(@"Total # of files: %lu", (unsigned long)self.files.count);
 }
 
 - (void)stopAnimation
 {
     [super stopAnimation];
-        // TODO save index so we can start with the same file next time
 }
 
 - (void)drawRect:(NSRect)rect
 {
+    CGFloat height, width;
 
     [super drawRect:rect];
     if(self.currentImage)
     {
-        NSInteger repWidth = 0;
-        NSInteger repHeight = 0;
-        CGFloat height, width;
-        for(NSImageRep *rep in self.currentImage.representations)
-        {
-            NSLog(@"Image rep width: %ld height: %ld", (long)rep.pixelsWide, (long)rep.pixelsHigh);
-            if([rep pixelsWide] > repWidth)
-            {
-                repWidth = [rep pixelsWide];
-                repHeight = [rep pixelsHigh];
-            }
-        }
-        NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(repWidth, repHeight)];
-        [image addRepresentations:self.currentImage.representations];
 
         CGFloat centerX, centerY;
 
-//        if(image.size.height > rect.size.height ||
-//           image.size.width > rect.size.width)
-//        {
-            CGFloat horizontalScaleFactor = rect.size.width / image.size.width;
-            CGFloat verticalScaleFactor = rect.size.height / image.size.height;
-            CGFloat scaleFactor;
+        CGFloat horizontalScaleFactor = rect.size.width / self.currentImage.size.width;
+        CGFloat verticalScaleFactor = rect.size.height / self.currentImage.size.height;
+        CGFloat scaleFactor;
 
-            if(verticalScaleFactor < horizontalScaleFactor)
-            {
-                scaleFactor = verticalScaleFactor;
-            }
-            else
-            {
-                scaleFactor = horizontalScaleFactor;
-            }
+        if(verticalScaleFactor < horizontalScaleFactor)
+        {
+            scaleFactor = verticalScaleFactor;
+        }
+        else
+        {
+            scaleFactor = horizontalScaleFactor;
+        }
 
-            width = image.size.width * scaleFactor;
-            height = image.size.height * scaleFactor;
-//        }
-//        else
-//        {
-//            width = image.size.width;
-//            height = image.size.height;
-//        }
+        width = self.currentImage.size.width * scaleFactor;
+        height = self.currentImage.size.height * scaleFactor;
 
         centerX = (rect.size.width / 2.0) - (width / 2.0);
         centerY = (rect.size.height / 2.0) - (height / 2.0);
@@ -139,7 +127,7 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
 
         NSRect newRect = CGRectMake(centerX, centerY, width,
                                  height);
-        [image drawInRect:newRect];
+        [self.currentImage drawInRect:newRect];
         NSLog(@"Drawing %@ (%@) in rect: %@", self.files[self.currentIndex],
               NSStringFromSize(self.currentImage.size), NSStringFromRect(newRect));
 
@@ -148,22 +136,62 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
 
 - (void)animateOneFrame
 {
+    if(!self.files.count)
+    {
+        // Maybe put something up to say there are no displayable files in the directory
+        return;
+    }
+
+    self.currentShuffleTimeInterval += self.animationTimeInterval;
+    if(self.currentShuffleTimeInterval >= shuffleTimeInterval)
+    {
+        self.currentShuffleTimeInterval = 0.0;
+        [self shuffleFiles];
+    }
+
+
     self.currentTimeInterval += self.animationTimeInterval;
     if(self.currentTimeInterval > self.changeTimeInterval)
     {
+        BOOL invalidImage;
         do
         {
-            self.currentIndex++;
+            if(!invalidImage)
+            {
+                self.currentIndex++;
+            }
             if(self.currentIndex >= self.files.count)
             {
                 self.currentIndex = 0;
             }
 
+            invalidImage = NO;
+
             self.currentImage = [[NSImage alloc]
                                  initByReferencingFile:[self.path stringByAppendingPathComponent:self.files[self.currentIndex]]];
-            [self setNeedsDisplay:YES];
+            if(!self.currentImage.isValid)
+            {
+                NSLog(@"Removing bad image: %@", self.files[self.currentIndex]);
+                NSLog(@"Images remaining: %lu", (unsigned long)self.files.count);
+                [self.files removeObjectAtIndex:self.currentIndex];
+                invalidImage = YES;
+            }
+            else
+            {
+                [self regenerateImage];
+                if(!self.currentImage)
+                {
+                    NSLog(@"Removing bad image: %@", self.files[self.currentIndex]);
+                    [self.files removeObjectAtIndex:self.currentIndex];
+                    NSLog(@"Images remaining: %lu", (unsigned long)self.files.count);
+                    invalidImage = YES;
+                }
+            }
 
-        } while(!self.currentImage);
+        } while(invalidImage);
+
+
+        [self setNeedsDisplay:YES];
 
 
         self.currentTimeInterval = 0.0;
@@ -186,19 +214,19 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
         loadedBundle = [bundle loadNibNamed:@"ConfigurationSheet" owner:self topLevelObjects:nil];
     }
 
-    for(NSString *key in [DonnaArtShowView comboBoxToInterval].allKeys)
+    for(int i = 0; i < [PictureScreenSaver intervalNames].count; i++)
     {
+        NSString *key = [PictureScreenSaver intervalNames][i];
         if(loadedBundle == YES) // Only add the items if we just loaded the window
         {
             [self.pictureChangeIntervalComboBox addItemWithObjectValue:key];
         }
         if(fabs(self.changeTimeInterval -
-                [[DonnaArtShowView comboBoxToInterval][key] doubleValue]) < 0.01)
+                [[PictureScreenSaver intervalLengths][i] doubleValue]) < 0.01)
         {
             [self.pictureChangeIntervalComboBox selectItemWithObjectValue:key];
         }
     }
-//    [self.pictureChangeIntervalComboBox addItemsWithObjectValues:[DonnaArtShowView comboBoxToInterval].allKeys];
 
     self.picturesFolderTextField.stringValue = self.path;
 
@@ -215,7 +243,7 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
         [self.defaults synchronize];
     }
 
-    NSNumber *selectedInterval = [DonnaArtShowView comboBoxToInterval].allValues[self.pictureChangeIntervalComboBox.indexOfSelectedItem];
+    NSNumber *selectedInterval = [PictureScreenSaver intervalLengths][self.pictureChangeIntervalComboBox.indexOfSelectedItem];
     if(fabs([selectedInterval doubleValue] - self.changeTimeInterval) > 0.01)
     {
         self.changeTimeInterval = [selectedInterval doubleValue];
@@ -251,16 +279,85 @@ static NSString * const pictureChangeIntervalKey = @"pictureIntervalChange";
 
 }
 
-+ (NSDictionary *)comboBoxToInterval
+- (void)regenerateImage
 {
-    return @{@"5 seconds": @5.0,
-             @"Minute": @60,
-             @"15 minutes": @(60 * 15),
-             @"20 minutes": @(60 * 20),
-             @"Hour": @(60 * 60),
-             @"4 hours": @(60 * 60 * 4),
-             @"8 hours": @(60 * 60 * 8),
-             @"Day": @(60 *60 * 24)};
+    NSInteger repWidth = 0;
+    NSInteger repHeight = 0;
+    for(NSImageRep *rep in self.currentImage.representations)
+    {
+        NSLog(@"Image rep width: %ld height: %ld", (long)rep.pixelsWide, (long)rep.pixelsHigh);
+        if([rep pixelsWide] > repWidth)
+        {
+            repWidth = [rep pixelsWide];
+            repHeight = [rep pixelsHigh];
+        }
+    }
+    if(repWidth == 0 || repHeight == 0)
+    {
+        NSLog(@"Bad image with width and height = 0");
+        self.currentImage = nil;
+        return;
+    }
+    NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(repWidth, repHeight)];
+    [image addRepresentations:self.currentImage.representations];
+    self.currentImage = image;
+
+}
+
+- (void)shuffleFiles
+{
+    NSMutableArray *files = [self.files mutableCopy];
+
+    [self.files removeAllObjects];
+
+    while(files.count)
+    {
+        int index = arc4random_uniform((int)files.count);
+        [self.files addObject:files[index]];
+        [files removeObjectAtIndex:index];
+    }
+}
+
+//+ (NSDictionary *)comboBoxToInterval
+//{
+//    return @{@"5 seconds": @5.0,
+//             @"Minute": @60,
+//             @"10 minutes": @(60 * 10),
+//             @"15 minutes": @(60 * 15),
+//             @"30 minutes": @(60 * 30),
+//             @"Hour": @(60 * 60),
+//             @"4 hours": @(60 * 60 * 4),
+//             @"8 hours": @(60 * 60 * 8),
+//             @"Day": @(60 *60 * 24)};
+//}
+//
+// Want to use a dictionary, but keys are in hash order
+
++ (NSArray *)intervalNames
+{
+    return @[@"5 seconds",
+             @"Minute",
+             @"10 minutes",
+             @"15 minutes",
+             @"30 minutes",
+             @"Hour",
+             @"4 hours",
+             @"8 hours",
+             @"Day"];
+}
+
++ (NSArray *)intervalLengths
+{
+    return @[@5.0,
+             @60,
+             @(60 * 10),
+             @(60 * 15),
+             @(60 * 30),
+             @(60 * 60),
+             @(60 * 60 * 4),
+             @(60 * 60 * 8),
+             @(60 *60 * 24)];
+
 }
 
 + (NSDictionary *)defaultsDictionary

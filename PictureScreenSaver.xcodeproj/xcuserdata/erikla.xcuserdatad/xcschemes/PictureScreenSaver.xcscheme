@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B35628AC1A9EB74C006C1816"
-               BuildableName = "DonnaArtShow.saver"
-               BlueprintName = "DonnaArtShow"
-               ReferencedContainer = "container:DonnaArtShow.xcodeproj">
+               BuildableName = "PictureScreenSaver.saver"
+               BlueprintName = "PictureScreenSaver"
+               ReferencedContainer = "container:PictureScreenSaver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B35628AC1A9EB74C006C1816"
-            BuildableName = "DonnaArtShow.saver"
-            BlueprintName = "DonnaArtShow"
-            ReferencedContainer = "container:DonnaArtShow.xcodeproj">
+            BuildableName = "PictureScreenSaver.saver"
+            BlueprintName = "PictureScreenSaver"
+            ReferencedContainer = "container:PictureScreenSaver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
@@ -78,9 +78,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B35628AC1A9EB74C006C1816"
-            BuildableName = "DonnaArtShow.saver"
-            BlueprintName = "DonnaArtShow"
-            ReferencedContainer = "container:DonnaArtShow.xcodeproj">
+            BuildableName = "PictureScreenSaver.saver"
+            BlueprintName = "PictureScreenSaver"
+            ReferencedContainer = "container:PictureScreenSaver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

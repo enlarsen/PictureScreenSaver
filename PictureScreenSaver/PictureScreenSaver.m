@@ -24,6 +24,7 @@ static double const shuffleTimeInterval = 60.0 * 60.0 * 24.0; // shuffle the pho
 @property (strong, nonatomic) NSImage *currentImage;
 @property (strong, nonatomic) NSString *bundleIdentifier;
 @property (strong, nonatomic) ScreenSaverDefaults *defaults;
+
 @end
 
 @implementation PictureScreenSaver
@@ -136,6 +137,8 @@ static double const shuffleTimeInterval = 60.0 * 60.0 * 24.0; // shuffle the pho
 
 - (void)animateOneFrame
 {
+    [NSCursor setHiddenUntilMouseMoves:YES];
+
     if(!self.files.count)
     {
         // Maybe put something up to say there are no displayable files in the directory
@@ -366,5 +369,7 @@ static double const shuffleTimeInterval = 60.0 * 60.0 * 24.0; // shuffle the pho
     return @{pictureDirectoryKey: @"~/Desktop",
              pictureChangeIntervalKey: @5.0};
 }
+
+
 
 @end
